@@ -60,6 +60,8 @@
       position: absolute; inset: 0; background-position: center; background-size: cover;
       opacity: 0; transition: opacity 900ms ease;
     }
+    .hero-slide--portrait { background-position: center 12%; }
+    .hero-slide--event { background-position: 39% center; }
     .hero-slide.is-active { opacity: 1; }
     .portfolio-item[hidden] { display: none !important; }
     .portfolio-item img { transition: transform .7s cubic-bezier(.2,.7,.2,1); }
@@ -71,6 +73,9 @@
     @media (prefers-reduced-motion: no-preference) {
       .js-reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
       .js-reveal.is-visible { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 640px) {
+      .hero-slide--portrait { background-position: center; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
@@ -136,8 +141,8 @@
     <section id="inicio" class="relative flex min-h-[720px] items-center justify-center overflow-hidden pt-20 sm:min-h-[760px]">
       <div id="hero-slider" class="absolute inset-0" aria-hidden="true">
         <!-- Troque estes caminhos pelas fotos de capa desejadas. -->
-        <div class="hero-slide is-active" style="background-image:url('imagens/ensaio-fem-praia.jpg')"></div>
-        <div class="hero-slide" style="background-image:url('imagens/eventos-abc.jpg')"></div>
+        <div class="hero-slide hero-slide--portrait is-active" style="background-image:url('imagens/ensaio-fem-praia.jpg')"></div>
+        <div class="hero-slide hero-slide--event" style="background-image:url('imagens/eventos-abc.jpg')"></div>
         <div class="hero-slide" style="background-image:url('imagens/logo insta.jpg')"></div>
       </div>
       <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/60 via-brand-dark/55 to-brand-dark"></div>
