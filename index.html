@@ -1,648 +1,688 @@
-html
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Em Cena Fotografia | Fotografia de  e Eventos Especializados</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171514">
+  <meta name="description" content="Fotografia de família, infantil, retratos, ensaios e celebrações em Fortaleza. Conheça o portfólio da Em Cena Fotografia e solicite seu orçamento.">
+  <meta property="og:title" content="Em Cena Fotografia | Histórias reais, memórias que ficam">
+  <meta property="og:description" content="Família, infância, retratos e celebrações fotografados com sensibilidade em Fortaleza e região.">
+  <meta property="og:type" content="website">
+  <title>Em Cena Fotografia | Família, Infantil, Ensaios e Eventos em Fortaleza</title>
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            dark: '#1A1817',
-                            card: '#242120',
-                            accent: '#C5A880', // Champagne / Gold earth tone
-                            accentHover: '#B3946B',
-                            sand: '#F9F6F0',
-                            warmGray: '#8C857B',
-                            lightBg: '#FAFAFA'
-                        }
-                    },
-                    fontFamily: {
-                        serif: ['Cormorant Garamond', 'serif'],
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                    }
-                }
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#171514',
+              card: '#211e1c',
+              accent: '#c5a880',
+              accentHover: '#d6bb96',
+              sand: '#f7f3ed',
+              muted: '#aaa198'
             }
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          }
         }
-    </script>
-    <style>
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1A1817;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #C5A880;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #725d41;
-        }
-        /* Smooth transitions */
-        .fade-in {
-            animation: fadeIn 0.8s ease-in forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+      }
+    };
+  </script>
+
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    html { scroll-padding-top: 88px; }
+    body { background: #171514; }
+    ::selection { background: #c5a880; color: #171514; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #171514; }
+    ::-webkit-scrollbar-thumb { background: #c5a880; border-radius: 8px; }
+    .font-display { font-family: 'Cormorant Garamond', serif; }
+    .eyebrow { letter-spacing: .25em; }
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ""; position: absolute; left: 0; bottom: -7px; width: 0; height: 1px;
+      background: #c5a880; transition: width .25s ease;
+    }
+    .nav-link:hover::after, .nav-link:focus-visible::after { width: 100%; }
+    .hero-slide {
+      position: absolute; inset: 0; background-position: center; background-size: cover;
+      opacity: 0; transition: opacity 900ms ease;
+    }
+    .hero-slide.is-active { opacity: 1; }
+    .portfolio-item[hidden] { display: none !important; }
+    .portfolio-item img { transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+    .portfolio-item:hover img { transform: scale(1.045); }
+    .portfolio-overlay { background: linear-gradient(0deg, rgba(15,13,12,.94), rgba(15,13,12,.08) 78%); }
+    .filter-btn[aria-pressed="true"] { background: #c5a880; border-color: #c5a880; color: #171514; }
+    .focus-ring:focus-visible { outline: 2px solid #c5a880; outline-offset: 4px; }
+    .reveal { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: no-preference) {
+      .js-reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+      .js-reveal.is-visible { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
 </head>
-<body class="bg-brand-dark text-stone-200 font-sans antialiased selection:bg-brand-accent selection:text-brand-dark">
 
-    <!-- Header / Menu de Navegação Fixo -->
-    <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-brand-dark/90 backdrop-blur-md border-b border-stone-800/60 py-4">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-            <!-- Logo -->
-            <a href="#" class="flex flex-col group">
-                <span class="font-serif text-2xl sm:text-3xl tracking-widest text-white group-hover:text-brand-accent transition-colors">EM CENA</span>
-                <span class="text-[10px] uppercase tracking-[0.3em] text-brand-accent font-medium -mt-1">Fotografia</span>
-            </a>
+<body class="text-stone-200 font-sans antialiased">
+  <a href="#conteudo" class="focus-ring sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-brand-accent focus:text-brand-dark focus:px-4 focus:py-3">
+    Pular para o conteúdo
+  </a>
 
-            <!-- Navigation Links (Desktop) -->
-            <nav class="hidden md:flex items-center space-x-8 text-sm uppercase tracking-widest font-medium">
-                <a href="#inicio" class="hover:text-brand-accent transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-brand-accent hover:after:w-full after:transition-all">Início</a>
-                <a href="#sobre" class="hover:text-brand-accent transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-brand-accent hover:after:w-full after:transition-all">Sobre Nós</a>
-                <a href="#portfolio" class="hover:text-brand-accent transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-brand-accent hover:after:w-full after:transition-all">Portfólio</a>
-                <a href="#depoimentos" class="hover:text-brand-accent transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-brand-accent hover:after:w-full after:transition-all">Depoimentos</a>
-                <a href="#contato" class="hover:text-brand-accent transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-brand-accent hover:after:w-full after:transition-all">Contato</a>
-                <a href="https://wa.me/5585991742478?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20meu%20evento." target="_blank" rel="noopener noreferrer" class="text-lg hover:text-brand-accent transition-colors" title="WhatsApp +55 (85) 99174-2478" aria-label="WhatsApp">
-                    <i class="fa-brands fa-whatsapp"></i>
-                </a>
-                <a href="https://www.instagram.com/emcena.fotografia/" target="_blank" rel="noopener noreferrer" class="text-lg hover:text-brand-accent transition-colors" title="Instagram @emcena.fotografia" aria-label="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-            </nav>
+  <!-- Cabeçalho -->
+  <header id="navbar" class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-brand-dark/90 backdrop-blur-xl transition-shadow">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      <a href="#inicio" class="focus-ring group flex flex-col" aria-label="Em Cena Fotografia — início">
+        <span class="font-display text-2xl tracking-[.16em] text-white transition-colors group-hover:text-brand-accent sm:text-3xl">EM CENA</span>
+        <span class="-mt-1 text-[9px] font-semibold uppercase tracking-[.34em] text-brand-accent">Fotografia</span>
+      </a>
 
-            <!-- CTA Button Header -->
-            <div class="hidden lg:block">
-                <a href="#contato" class="border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 text-xs uppercase tracking-widest px-5 py-2.5 rounded-full font-semibold">
-                    Solicitar Orçamento
-                </a>
-            </div>
+      <nav class="hidden items-center gap-6 text-[11px] font-semibold uppercase tracking-[.16em] lg:flex" aria-label="Navegação principal">
+        <a class="nav-link focus-ring" href="#inicio">Início</a>
+        <a class="nav-link focus-ring" href="#sobre">Sobre</a>
+        <a class="nav-link focus-ring" href="#servicos">Serviços</a>
+        <a class="nav-link focus-ring" href="#portfolio">Portfólio</a>
+        <a class="nav-link focus-ring" href="#depoimentos">Depoimentos</a>
+        <a class="nav-link focus-ring" href="#contato">Contato</a>
+      </nav>
 
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-stone-300 hover:text-white focus:outline-none p-2">
-                <i class="fa-solid fa-bars text-2xl"></i>
-            </button>
-        </div>
+      <div class="hidden items-center gap-4 lg:flex">
+        <a href="https://www.instagram.com/emcena.fotografia/" target="_blank" rel="noopener noreferrer"
+           class="focus-ring text-lg text-stone-300 transition hover:text-brand-accent" aria-label="Instagram Em Cena Fotografia">
+          <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+        </a>
+        <a href="https://wa.me/5585991742478?text=Ol%C3%A1%21%20Conheci%20o%20site%20da%20Em%20Cena%20Fotografia%20e%20gostaria%20de%20um%20or%C3%A7amento."
+           target="_blank" rel="noopener noreferrer"
+           class="focus-ring rounded-full bg-brand-accent px-5 py-3 text-[10px] font-bold uppercase tracking-[.15em] text-brand-dark transition hover:bg-brand-accentHover">
+          Solicitar orçamento
+        </a>
+      </div>
 
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark/95 border-b border-stone-800 px-6 py-6 space-y-4 text-center">
-            <a href="#inicio" class="mobile-link block text-sm uppercase tracking-widest py-2 text-stone-300 hover:text-brand-accent">Início</a>
-            <a href="#sobre" class="mobile-link block text-sm uppercase tracking-widest py-2 text-stone-300 hover:text-brand-accent">Sobre Nós</a>
-            <a href="#portfolio" class="mobile-link block text-sm uppercase tracking-widest py-2 text-stone-300 hover:text-brand-accent">Portfólio</a>
-            <a href="#depoimentos" class="mobile-link block text-sm uppercase tracking-widest py-2 text-stone-300 hover:text-brand-accent">Depoimentos</a>
-            <a href="#contato" class="mobile-link block text-sm uppercase tracking-widest py-2 text-stone-300 hover:text-brand-accent">Contato</a>
-            <a href="#contato" class="mobile-link inline-block mt-2 border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-brand-dark transition-all text-xs uppercase tracking-widest px-6 py-3 rounded-full font-semibold">
-                Solicitar Orçamento
-            </a>
-        </div>
-    </header>
-
-    <!-- Hero Section (Carrossel / Banner Impactante) -->
-    <section id="inicio" class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-        <!-- Background Slide Images -->
-        <div id="hero-slider" class="absolute inset-0 w-full h-full">
-            <div class="hero-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-100" style="background-image: url('imagens/logo insta.jpg');"></div>
-            <div class="hero-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0" style="background-image: url('imagens/logo insta.jpg');"></div>
-            <div class="hero-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0" style="background-image: url('imagens/logo insta.jpg');"></div>
-        </div>
-
-        <!-- Overlay de gradiente elegante -->
-        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/50 to-brand-dark/40"></div>
-
-        <!-- Conteúdo do Hero -->
-        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto space-y-6 pt-20">
-            <p class="text-brand-accent text-xs sm:text-sm uppercase tracking-[0.4em] font-semibold">Fotografia Emocional & Documental</p>
-            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white font-normal leading-tight tracking-tight">
-                Eternizando Momentos Únicos
-            </h1>
-            <p class="text-stone-300 font-light text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-                Capturamos a essência, a alma e o sentimento espontâneo dos dias mais inesquecíveis da sua vida.
-            </p>
-            <div class="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#contato" class="w-full sm:w-auto bg-brand-accent hover:bg-brand-accentHover text-brand-dark font-semibold text-xs sm:text-sm uppercase tracking-widest px-8 py-4 rounded-full transition-all duration-300 shadow-lg shadow-brand-accent/20 transform hover:-translate-y-0.5">
-                    Solicitar Orçamento
-                </a>
-                <a href="#portfolio" class="w-full sm:w-auto border border-stone-400 hover:border-white text-white hover:bg-white/10 text-xs sm:text-sm uppercase tracking-widest px-8 py-4 rounded-full transition-all duration-300 backdrop-blur-sm">
-                    Ver Portfólio
-                </a>
-            </div>
-        </div>
-
-        <!-- Slider Controls -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-3">
-            <button onclick="setSlide(0)" class="slide-indicator w-3 h-3 rounded-full bg-white/80 transition-all"></button>
-            <button onclick="setSlide(1)" class="slide-indicator w-3 h-3 rounded-full bg-white/30 transition-all"></button>
-            <button onclick="setSlide(2)" class="slide-indicator w-3 h-3 rounded-full bg-white/30 transition-all"></button>
-        </div>
-    </section>
-
-    <!-- Seção 'Sobre Nós' -->
-    <section id="sobre" class="py-24 bg-brand-dark relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-                
-                <!-- Imagens da Equipe/Estilo -->
-                <div class="lg:col-span-6 relative">
-                    <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-stone-800">
-                        <img src="imagens/logo insta.jpg" alt="Equipe Em Cena Fotografia" class="w-full h-[480px] object-cover filter brightness-95">
-                    </div>
-                    <!-- Elemento Decorativo Terroso -->
-                    <div class="absolute -bottom-6 -right-6 w-2/3 h-2/3 border-2 border-brand-accent/30 rounded-2xl -z-0 hidden sm:block"></div>
-                    <div class="absolute -top-6 -left-6 w-32 h-32 bg-brand-accent/10 rounded-full blur-2xl -z-0"></div>
-                </div>
-
-                <!-- Conteúdo Textual -->
-                <div class="lg:col-span-6 space-y-6">
-                    <div class="space-y-2">
-                        <span class="text-brand-accent text-xs uppercase tracking-[0.3em] font-semibold">Nossa Essência</span>
-                        <h2 class="font-serif text-3xl sm:text-5xl text-white font-normal">A paixão por Registrar momentos "Em Cena"</h2>
-                    </div>
-                    
-                    <p class="text-stone-400 font-light text-base leading-relaxed">
-                        No <strong class="text-stone-200 font-medium">Em Cena Fotografia</strong>, acreditamos que a fotografia vai muito além do clique. É sobre sentir o ambiente, antecipar o abraço apertado, o olhar de cumplicidade no altar e a lágrima discreta de um pai.
-                    </p>
-
-                    <p class="text-stone-400 font-light text-base leading-relaxed">
-                        Nossa abordagem combina o fotojornalismo refinado com uma estética cinematográfica. Buscamos a luz natural, a composição harmônica e, acima de tudo, a verdade em cada cena. Sem poses exageradas — apenas momentos autênticos guardados para sempre.
-                    </p>
-
-                    <!-- Diferenciais -->
-                    <div class="grid grid-cols-2 gap-6 pt-4 border-t border-stone-800/80">
-                        <div>
-                            <span class="font-serif text-3xl text-brand-accent font-semibold block">2+</span>
-                            <span class="text-xs uppercase tracking-wider text-stone-400">Anos de História</span>
-                        </div>
-                        <div>
-                            <span class="font-serif text-3xl text-brand-accent font-semibold block">200+</span>
-                            <span class="text-xs uppercase tracking-wider text-stone-400">Histórias Contadas</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Galeria de Portfólio Interativa -->
-    <section id="portfolio" class="py-24 bg-[#141211] border-t border-stone-800/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
-                <span class="text-brand-accent text-xs uppercase tracking-[0.3em] font-semibold">Nosso Trabalho</span>
-                <h2 class="font-serif text-3xl sm:text-5xl text-white">Galeria de Histórias</h2>
-                <p class="text-stone-400 text-sm font-light">Explore um pouco dos ensaios, celebrações e afetos que já tivemos a honra de fotografar.</p>
-            </div>
-
-            <!-- Filtros de Categoria -->
-            <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12">
-                <button onclick="filterCategory('todos')" class="filter-btn active text-xs uppercase tracking-widest px-5 py-2.5 rounded-full border border-brand-accent bg-brand-accent text-brand-dark font-medium transition-all">Todos</button>
-                <button onclick="filterCategory('casamentos')" class="filter-btn text-xs uppercase tracking-widest px-5 py-2.5 rounded-full border border-stone-800 hover:border-brand-accent text-stone-300 hover:text-white transition-all">Casamentos</button>
-                <button onclick="filterCategory('prewedding')" class="filter-btn text-xs uppercase tracking-widest px-5 py-2.5 rounded-full border border-stone-800 hover:border-brand-accent text-stone-300 hover:text-white transition-all">Pre-Wedding</button>
-                <button onclick="filterCategory('ensaios')" class="filter-btn text-xs uppercase tracking-widest px-5 py-2.5 rounded-full border border-stone-800 hover:border-brand-accent text-stone-300 hover:text-white transition-all">Ensaios</button>
-                <button onclick="filterCategory('eventos')" class="filter-btn text-xs uppercase tracking-widest px-5 py-2.5 rounded-full border border-stone-800 hover:border-brand-accent text-stone-300 hover:text-white transition-all">Eventos</button>
-            </div>
-
-            <!-- Masonry/Grid de Imagens do Portfólio -->
-            <div id="portfolio-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <!-- Item 1 - Ensaio -->
-                <div class="portfolio-item ensaios group relative overflow-hidden rounded-xl bg-brand-card border border-stone-800 cursor-pointer" onclick="openModal('imagens/ensaio-fem-praia.jpg', 'Ensaio Praia Pôr do Sol', 'Ensaio Praia ao Pôr do Sol')">
-                    <img src="imagens/ensaio-fem-praia.jpg" alt="Ensaio Praia Pôr do Sol" class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span class="text-brand-accent text-xs uppercase tracking-widest font-semibold">Ensaios</span>
-                        <h3 class="font-serif text-2xl text-white">cliente</h3>
-                        <p class="text-stone-300 text-xs mt-1">Ensaio Praia ao Pôr do Sol</p>
-                    </div>
-                </div>
-
-                <!-- Item 2 - Eventos -->
-                <div class="portfolio-item Eventos group relative overflow-hidden rounded-xl bg-brand-card border border-stone-800 cursor-pointer" onclick="openModal('imagens/eventos-abc.jpg', 'cliente', 'Festa de Formatura')">
-                    <img src="imagens/eventos-abc.jpg" alt="Eventos" class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span class="text-brand-accent text-xs uppercase tracking-widest font-semibold">Formatura ABC</span>
-                        <h3 class="font-serif text-2xl text-white">cliente</h3>
-                        <p class="text-stone-300 text-xs mt-1">Festa de Formatura</p>
-                    </div>
-                </div>
-
-                <!-- Item 3 - Casamento -->
-                <div class="portfolio-item casamentos group relative overflow-hidden rounded-xl bg-brand-card border border-stone-800 cursor-pointer" onclick="openModal('imagens/logo insta.jpg', 'cliente', 'aniversario park')">
-                    <img src="imagens/logo insta.jpg" alt="Casamento" class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span class="text-brand-accent text-xs uppercase tracking-widest font-semibold">Casamentos</span>
-                        <h3 class="font-serif text-2xl text-white">cliente</h3>
-                        <p class="text-stone-300 text-xs mt-1">Celebração Rústica</p>
-                    </div>
-                </div>
-
-                <!-- Item 4 - Ensaios -->
-                <div class="portfolio-item ensaios group relative overflow-hidden rounded-xl bg-brand-card border border-stone-800 cursor-pointer" onclick="openModal('imagens/logo insta.jpg', 'cliente', 'Ensaio Solo Feminino')">
-                    <img src="imagens/logo insta.jpg" alt="Ensaio Feminino" class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span class="text-brand-accent text-xs uppercase tracking-widest font-semibold">Ensaios</span>
-                        <h3 class="font-serif text-2xl text-white">cliente</h3>
-                        <p class="text-stone-300 text-xs mt-1">Retrato Atemporal</p>
-                    </div>
-                </div>
-
-                <!-- Item 5 - Eventos -->
-                <div class="portfolio-item eventos group relative overflow-hidden rounded-xl bg-brand-card border border-stone-800 cursor-pointer" onclick="openModal('imagens/logo insta.jpg', 'cliente', 'Celebração de Família')">
-                    <img src="imagens/logo insta.jpg" alt="Eventos Especial" class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span class="text-brand-accent text-xs uppercase tracking-widest font-semibold">Eventos</span>
-                        <h3 class="font-serif text-2xl text-white">Bodas de Prata</h3>
-                        <p class="text-stone-300 text-xs mt-1">25 Anos de Amor</p>
-                    </div>
-                </div>
-
-                <!-- Item 6 - Prewedding -->
-                <div class="portfolio-item prewedding group relative overflow-hidden rounded-xl bg-brand-card border border-stone-800 cursor-pointer" onclick="openModal('imagens/logo insta.jpg', 'cliente', 'Ensaio na Praia')">
-                    <img src="imagens/logo insta.jpg" alt="Prewedding Praia" class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span class="text-brand-accent text-xs uppercase tracking-widest font-semibold">Pre-Wedding</span>
-                        <h3 class="font-serif text-2xl text-white">cliente</h3>
-                        <p class="text-stone-300 text-xs mt-1">Luz do Fim de Tarde</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Modal para Fotos Expandidas -->
-    <div id="image-modal" class="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
-        <button onclick="closeModal()" class="absolute top-6 right-6 text-stone-400 hover:text-white text-3xl focus:outline-none z-50">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-        <div class="max-w-5xl w-full text-center space-y-4">
-            <img id="modal-img" src="" alt="Imagem Expandida" class="max-h-[80vh] w-auto mx-auto rounded-lg shadow-2xl object-contain">
-            <div class="space-y-1">
-                <h3 id="modal-title" class="font-serif text-2xl text-white"></h3>
-                <p id="modal-subtitle" class="text-brand-accent text-xs uppercase tracking-widest"></p>
-            </div>
-        </div>
+      <button id="mobile-menu-btn" type="button" class="focus-ring rounded-lg p-2 text-2xl text-white lg:hidden"
+              aria-label="Abrir menu" aria-controls="mobile-menu" aria-expanded="false">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
     </div>
 
-    <!-- Depoimentos de Noivos / Clientes -->
-    <section id="depoimentos" class="py-24 bg-brand-dark relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto space-y-3 mb-16">
-                <span class="text-brand-accent text-xs uppercase tracking-[0.3em] font-semibold">Prova Social</span>
-                <h2 class="font-serif text-3xl sm:text-5xl text-white">O Que Dizem Nossos Clientes</h2>
-            </div>
+    <nav id="mobile-menu" class="hidden border-t border-white/10 bg-brand-dark px-5 py-5 lg:hidden" aria-label="Navegação móvel">
+      <div class="mx-auto flex max-w-7xl flex-col gap-1 text-center text-xs font-semibold uppercase tracking-[.18em]">
+        <a class="mobile-link rounded-lg px-4 py-3 hover:bg-white/5 hover:text-brand-accent" href="#inicio">Início</a>
+        <a class="mobile-link rounded-lg px-4 py-3 hover:bg-white/5 hover:text-brand-accent" href="#sobre">Sobre</a>
+        <a class="mobile-link rounded-lg px-4 py-3 hover:bg-white/5 hover:text-brand-accent" href="#servicos">Serviços</a>
+        <a class="mobile-link rounded-lg px-4 py-3 hover:bg-white/5 hover:text-brand-accent" href="#portfolio">Portfólio</a>
+        <a class="mobile-link rounded-lg px-4 py-3 hover:bg-white/5 hover:text-brand-accent" href="#depoimentos">Depoimentos</a>
+        <a class="mobile-link rounded-lg px-4 py-3 hover:bg-white/5 hover:text-brand-accent" href="#contato">Contato</a>
+        <a class="mt-3 rounded-full bg-brand-accent px-5 py-3 text-brand-dark" href="https://wa.me/5585991742478?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento." target="_blank" rel="noopener noreferrer">Conversar pelo WhatsApp</a>
+      </div>
+    </nav>
+  </header>
 
-            <!-- Grid de Cards de Depoimentos -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Depoimento 1 -->
-                <div class="bg-brand-card p-8 rounded-2xl border border-stone-800/80 flex flex-col justify-between space-y-6 relative">
-                    <div class="text-brand-accent text-2xl">
-                        <i class="fa-solid fa-quote-left"></i>
-                    </div>
-                    <p class="text-stone-300 text-sm font-light leading-relaxed italic">
-                        "O Em Cena capturou momentos que nem percebemos que aconteceram. Quando recebemos nosso álbum, choramos de emoção. A delicadeza das fotos é indescritível!"
-                    </p>
-                    <div class="pt-4 border-t border-stone-800 flex items-center justify-between">
-                        <div>
-                            <h4 class="font-serif text-lg text-white">cliente</h4>
-                            <span class="text-xs text-stone-400">Casamento em Fortaleza</span>
-                        </div>
-                        <div class="flex text-brand-accent text-xs space-x-1">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                    </div>
-                </div>
+  <main id="conteudo">
+    <!-- Abertura -->
+    <section id="inicio" class="relative flex min-h-[720px] items-center justify-center overflow-hidden pt-20 sm:min-h-[760px]">
+      <div id="hero-slider" class="absolute inset-0" aria-hidden="true">
+        <!-- Troque estes caminhos pelas fotos de capa desejadas. -->
+        <div class="hero-slide is-active" style="background-image:url('imagens/ensaio-fem-praia.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('imagens/eventos-abc.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('imagens/logo insta.jpg')"></div>
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/60 via-brand-dark/55 to-brand-dark"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-brand-dark/50 via-transparent to-brand-dark/30"></div>
 
-                <!-- Depoimento 2 -->
-                <div class="bg-brand-card p-8 rounded-2xl border border-stone-800/80 flex flex-col justify-between space-y-6 relative">
-                    <div class="text-brand-accent text-2xl">
-                        <i class="fa-solid fa-quote-left"></i>
-                    </div>
-                    <p class="text-stone-300 text-sm font-light leading-relaxed italic">
-                        "A tranquilidade que eles nos passaram no pré-wedding e no dia do casamento fez toda a diferença. Não nos sentimos 'posando', foi tudo fluido e natural."
-                    </p>
-                    <div class="pt-4 border-t border-stone-800 flex items-center justify-between">
-                        <div>
-                            <h4 class="font-serif text-lg text-white">cliente</h4>
-                            <span class="text-xs text-stone-400">Casamento no Campo</span>
-                        </div>
-                        <div class="flex text-brand-accent text-xs space-x-1">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Depoimento 3 -->
-                <div class="bg-brand-card p-8 rounded-2xl border border-stone-800/80 flex flex-col justify-between space-y-6 relative">
-                    <div class="text-brand-accent text-2xl">
-                        <i class="fa-solid fa-quote-left"></i>
-                    </div>
-                    <p class="text-stone-300 text-sm font-light leading-relaxed italic">
-                        "Profissionais impecáveis! A qualidade da luz, o enquadramento e a agilidade na entrega do material superaram todas as nossas expectativas."
-                    </p>
-                    <div class="pt-4 border-t border-stone-800 flex items-center justify-between">
-                        <div>
-                            <h4 class="font-serif text-lg text-white">cliente</h4>
-                            <span class="text-xs text-stone-400">aniversário</span>
-                        </div>
-                        <div class="flex text-brand-accent text-xs space-x-1">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+      <div class="relative z-10 mx-auto max-w-5xl px-5 py-24 text-center sm:px-8">
+        <p class="mb-5 text-[10px] font-bold uppercase tracking-[.35em] text-brand-accent sm:text-xs">Fotografia com sensibilidade · Fortaleza — CE</p>
+        <h1 class="font-display text-5xl font-normal leading-[.98] text-white sm:text-7xl md:text-8xl">
+          Histórias reais.<br><em class="font-normal text-brand-accent">Memórias que ficam.</em>
+        </h1>
+        <p class="mx-auto mt-7 max-w-2xl text-sm font-light leading-7 text-stone-200 sm:text-base sm:leading-8">
+          Família, infância, retratos e celebrações registrados com cuidado, naturalidade e atenção aos detalhes que tornam cada história única.
+        </p>
+        <div class="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+          <a href="https://wa.me/5585991742478?text=Ol%C3%A1%21%20Conheci%20o%20site%20da%20Em%20Cena%20Fotografia%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento."
+             target="_blank" rel="noopener noreferrer"
+             class="focus-ring inline-flex items-center justify-center gap-3 rounded-full bg-brand-accent px-8 py-4 text-[10px] font-bold uppercase tracking-[.18em] text-brand-dark transition hover:-translate-y-0.5 hover:bg-brand-accentHover sm:text-xs">
+            <i class="fa-brands fa-whatsapp text-base" aria-hidden="true"></i> Solicitar orçamento
+          </a>
+          <a href="#portfolio" class="focus-ring inline-flex items-center justify-center rounded-full border border-white/50 bg-black/10 px-8 py-4 text-[10px] font-semibold uppercase tracking-[.18em] text-white backdrop-blur-sm transition hover:border-brand-accent hover:bg-white/10 sm:text-xs">
+            Explorar portfólio
+          </a>
         </div>
+        <div class="mt-14 flex items-center justify-center gap-3" aria-label="Controles do destaque">
+          <button class="slide-indicator h-2.5 w-8 rounded-full bg-brand-accent transition-all" data-slide="0" aria-label="Mostrar imagem 1" aria-pressed="true"></button>
+          <button class="slide-indicator h-2.5 w-2.5 rounded-full bg-white/50 transition-all" data-slide="1" aria-label="Mostrar imagem 2" aria-pressed="false"></button>
+          <button class="slide-indicator h-2.5 w-2.5 rounded-full bg-white/50 transition-all" data-slide="2" aria-label="Mostrar imagem 3" aria-pressed="false"></button>
+        </div>
+      </div>
+      <a href="#sobre" class="focus-ring absolute bottom-5 left-1/2 hidden -translate-x-1/2 text-xs uppercase tracking-[.2em] text-stone-300 transition hover:text-brand-accent sm:block">
+        Descubra a Em Cena <i class="fa-solid fa-arrow-down ml-2" aria-hidden="true"></i>
+      </a>
     </section>
 
-    <!-- Formulário de Contato / Orçamento Detalhado -->
-    <section id="contato" class="py-24 bg-[#141211] border-t border-stone-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-                
-                <!-- Informações e Chamada -->
-                <div class="lg:col-span-5 space-y-8">
-                    <div class="space-y-3">
-                        <span class="text-brand-accent text-xs uppercase tracking-[0.3em] font-semibold">Vamos Conversar?</span>
-                        <h2 class="font-serif text-3xl sm:text-5xl text-white">Solicite Seu Orçamento</h2>
-                        <p class="text-stone-400 font-light text-sm leading-relaxed">
-                            Queremos conhecer a sua história! Conte-nos mais sobre a data e o local do seu grande dia. Responderemos em até 24 horas.
-                        </p>
-                    </div>
-
-                    <div class="space-y-6 pt-4">
-                        <div class="flex items-start space-x-4">
-                            <div class="w-10 h-10 rounded-full bg-brand-card border border-stone-800 flex items-center justify-center text-brand-accent shrink-0">
-                                <i class="fa-solid fa-location-dot"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-sm font-medium text-white">Atendimento</h4>
-                                <p class="text-xs text-stone-400 mt-0.5">Disponível para casamentos todo o Ceará.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-4">
-                            <div class="w-10 h-10 rounded-full bg-brand-card border border-stone-800 flex items-center justify-center text-brand-accent shrink-0">
-                                <i class="fa-solid fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-sm font-medium text-white">E-mail Directo</h4>
-                                <p class="text-xs text-stone-400 mt-0.5">emcena.ft.studio@gmail.com</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-4">
-                            <div class="w-10 h-10 rounded-full bg-brand-card border border-stone-800 flex items-center justify-center text-brand-accent shrink-0">
-                                <i class="fa-solid fa-phone"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-sm font-medium text-white">WhatsApp</h4>
-                                <p class="text-xs text-stone-400 mt-0.5">+55 (85) 99174-2478</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Form Card -->
-                <div class="lg:col-span-7 bg-brand-card p-8 sm:p-10 rounded-2xl border border-stone-800 shadow-xl">
-                    <form id="contact-form" action="https://formsubmit.co/emcena.ft.studio@gmail.com" method="POST" class="space-y-6">
-                        <input type="hidden" name="_subject" value="Nova solicitação de orçamento - Em Cena Fotografia">
-                        <input type="hidden" name="_template" value="table">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-xs uppercase tracking-wider text-stone-300 font-medium mb-2">Nome Completo *</label>
-                                <input type="text" name="Nome completo" required placeholder="Digite seu nome" class="w-full bg-brand-dark/80 border border-stone-700/80 rounded-lg px-4 py-3 text-sm text-white placeholder-stone-500 focus:outline-none focus:border-brand-accent transition-colors">
-                            </div>
-                            <div>
-                                <label class="block text-xs uppercase tracking-wider text-stone-300 font-medium mb-2">E-mail *</label>
-                                <input type="email" name="email" required placeholder="seuemail@exemplo.com" class="w-full bg-brand-dark/80 border border-stone-700/80 rounded-lg px-4 py-3 text-sm text-white placeholder-stone-500 focus:outline-none focus:border-brand-accent transition-colors">
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-xs uppercase tracking-wider text-stone-300 font-medium mb-2">Telefone / WhatsApp *</label>
-                                <input type="tel" name="Telefone / WhatsApp" required placeholder="(85) 99999-9999" class="w-full bg-brand-dark/80 border border-stone-700/80 rounded-lg px-4 py-3 text-sm text-white placeholder-stone-500 focus:outline-none focus:border-brand-accent transition-colors">
-                            </div>
-                            <div>
-                                <label class="block text-xs uppercase tracking-wider text-stone-300 font-medium mb-2">Data do Evento</label>
-                                <input type="date" name="Data do evento" class="w-full bg-brand-dark/80 border border-stone-700/80 rounded-lg px-4 py-3 text-sm text-white placeholder-stone-500 focus:outline-none focus:border-brand-accent transition-colors">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs uppercase tracking-wider text-stone-300 font-medium mb-2">Tipo de Evento</label>
-                            <select name="Tipo de evento" class="w-full bg-brand-dark/80 border border-stone-700/80 rounded-lg px-4 py-3 text-sm text-stone-300 focus:outline-none focus:border-brand-accent transition-colors">
-                                <option value="casamento">Casamento / Mini Wedding</option>
-                                <option value="prewedding">Ensaio Pre-Wedding</option>
-                                <option value="ensaio">Ensaio Individual / Casal</option>
-                                <option value="aniversario">Aniversário</option>
-                                <option value="outro">Outro Evento Especial</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs uppercase tracking-wider text-stone-300 font-medium mb-2">Sua Mensagem / Detalhes do Evento</label>
-                            <textarea name="Mensagem" rows="4" placeholder="Conte-nos onde será o evento, estilo da cerimônia ou dúvidas..." class="w-full bg-brand-dark/80 border border-stone-700/80 rounded-lg px-4 py-3 text-sm text-white placeholder-stone-500 focus:outline-none focus:border-brand-accent transition-colors"></textarea>
-                        </div>
-
-                        <button type="submit" class="w-full bg-brand-accent hover:bg-brand-accentHover text-brand-dark font-semibold text-xs uppercase tracking-widest py-4 rounded-lg transition-all duration-300 shadow-md">
-                            Enviar Solicitação
-                        </button>
-                        <p id="contact-form-status" class="hidden text-center text-sm" role="status" aria-live="polite"></p>
-                    </form>
-
-                </div>
-
-            </div>
+    <!-- Sobre -->
+    <section id="sobre" class="overflow-hidden bg-brand-dark py-20 sm:py-28">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20">
+        <div class="js-reveal relative">
+          <div class="absolute -bottom-4 -right-4 h-2/3 w-2/3 rounded-2xl border border-brand-accent/40 sm:-bottom-6 sm:-right-6"></div>
+          <img src="imagens/ensaio-fem-praia.jpg" alt="Retrato de ensaio ao ar livre, parte do portfólio Em Cena Fotografia"
+               class="relative z-10 h-[390px] w-full rounded-xl object-cover sm:h-[520px]" loading="lazy" decoding="async">
+          <div class="absolute -left-3 top-8 z-20 hidden border border-brand-accent/40 bg-brand-dark/90 px-5 py-4 backdrop-blur sm:block">
+            <p class="font-display text-2xl italic text-brand-accent">Com presença,</p>
+            <p class="font-display text-2xl italic text-white">com verdade.</p>
+          </div>
         </div>
+        <div class="js-reveal space-y-6">
+          <p class="eyebrow text-[10px] font-bold uppercase text-brand-accent sm:text-xs">Por trás da câmera</p>
+          <h2 class="font-display text-4xl leading-tight text-white sm:text-6xl">Fotografar é perceber o que torna cada momento <em class="text-brand-accent">especial.</em></h2>
+          <p class="text-sm font-light leading-8 text-stone-300 sm:text-base">
+            Na Em Cena Fotografia, acreditamos que as imagens mais significativas nascem quando as pessoas podem viver o momento de verdade. Nosso olhar procura os gestos espontâneos, os encontros, os detalhes e as conexões que merecem ser lembradas.
+          </p>
+          <p class="text-sm font-light leading-8 text-stone-400 sm:text-base">
+            Com direção cuidadosa quando necessário e espaço para a espontaneidade, buscamos criar registros elegantes, naturais e cheios de significado — da intimidade de um retrato à energia de uma comemoração.
+          </p>
+          <a href="#servicos" class="focus-ring inline-flex items-center gap-3 border-b border-brand-accent pb-2 text-xs font-bold uppercase tracking-[.16em] text-brand-accent transition hover:gap-5">
+            Conheça os serviços <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
     </section>
 
-    <!-- Rodapé -->
-    <footer class="bg-brand-dark border-t border-stone-800/60 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            
-            <!-- Logo Footer -->
-            <div class="text-center md:text-left">
-                <a href="#" class="flex flex-col group">
-                    <span class="font-serif text-2xl tracking-widest text-white">EM CENA</span>
-                    <span class="text-[9px] uppercase tracking-[0.3em] text-brand-accent font-medium -mt-1">Fotografia</span>
-                </a>
-            </div>
-
-            <!-- Redes Sociais -->
-            <div class="flex items-center space-x-6 text-stone-400">
-                <a href="https://www.instagram.com/emcena.fotografia/" target="_blank" rel="noopener noreferrer" class="hover:text-brand-accent text-lg transition-colors" title="Instagram @emcena.fotografia"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://wa.me/5585991742478?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20meu%20evento." target="_blank" rel="noopener noreferrer" class="hover:text-brand-accent text-lg transition-colors" title="WhatsApp +55 (85) 99174-2478"><i class="fa-brands fa-whatsapp"></i></a>
-            </div>
-
-            <!-- Direitos -->
-            <div class="text-xs text-stone-500 text-center md:text-right">
-                <p>&copy; 2026 Em Cena Fotografia. Todos os direitos reservados.</p>
-            </div>
-
+    <!-- Serviços -->
+    <section id="servicos" class="border-y border-white/5 bg-[#1c1917] py-20 sm:py-24">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="js-reveal mx-auto mb-12 max-w-2xl text-center sm:mb-16">
+          <p class="eyebrow mb-3 text-[10px] font-bold uppercase text-brand-accent sm:text-xs">O que podemos registrar</p>
+          <h2 class="font-display text-4xl text-white sm:text-6xl">Cada fase merece ser lembrada.</h2>
+          <p class="mt-4 text-sm font-light leading-7 text-stone-400">Escolha a experiência que combina com a sua história. Vamos planejar juntos o registro ideal para você.</p>
         </div>
-    </footer>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <article class="js-reveal group border border-white/10 bg-brand-dark p-7 transition duration-300 hover:-translate-y-1 hover:border-brand-accent/60 sm:p-9">
+            <span class="mb-6 flex h-12 w-12 items-center justify-center rounded-full border border-brand-accent/40 text-xl text-brand-accent"><i class="fa-solid fa-people-roof" aria-hidden="true"></i></span>
+            <h3 class="font-display text-3xl text-white">Família</h3>
+            <p class="mt-3 text-sm leading-7 text-stone-400">Retratos cheios de afeto, encontros entre gerações e lembranças para guardar por muitos anos.</p>
+            <a class="service-link mt-6 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[.16em] text-brand-accent hover:text-white" data-service="Fotografia de família" href="#contato">Quero registrar minha família <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </article>
+          <article class="js-reveal group border border-white/10 bg-brand-dark p-7 transition duration-300 hover:-translate-y-1 hover:border-brand-accent/60 sm:p-9">
+            <span class="mb-6 flex h-12 w-12 items-center justify-center rounded-full border border-brand-accent/40 text-xl text-brand-accent"><i class="fa-solid fa-child-reaching" aria-hidden="true"></i></span>
+            <h3 class="font-display text-3xl text-white">Infantil</h3>
+            <p class="mt-3 text-sm leading-7 text-stone-400">Expressões, descobertas, brincadeiras e a personalidade única de cada criança.</p>
+            <a class="service-link mt-6 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[.16em] text-brand-accent hover:text-white" data-service="Fotografia infantil" href="#contato">Quero fotografar essa fase <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </article>
+          <article class="js-reveal group border border-white/10 bg-brand-dark p-7 transition duration-300 hover:-translate-y-1 hover:border-brand-accent/60 sm:p-9">
+            <span class="mb-6 flex h-12 w-12 items-center justify-center rounded-full border border-brand-accent/40 text-xl text-brand-accent"><i class="fa-solid fa-cake-candles" aria-hidden="true"></i></span>
+            <h3 class="font-display text-3xl text-white">Aniversários</h3>
+            <p class="mt-3 text-sm leading-7 text-stone-400">A decoração, os abraços, os parabéns e os detalhes que fazem a comemoração ser sua.</p>
+            <a class="service-link mt-6 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[.16em] text-brand-accent hover:text-white" data-service="Fotografia de aniversário" href="#contato">Registrar minha comemoração <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </article>
+          <article class="js-reveal group border border-white/10 bg-brand-dark p-7 transition duration-300 hover:-translate-y-1 hover:border-brand-accent/60 sm:p-9">
+            <span class="mb-6 flex h-12 w-12 items-center justify-center rounded-full border border-brand-accent/40 text-xl text-brand-accent"><i class="fa-solid fa-camera-retro" aria-hidden="true"></i></span>
+            <h3 class="font-display text-3xl text-white">Ensaios e retratos</h3>
+            <p class="mt-3 text-sm leading-7 text-stone-400">Uma experiência pensada para valorizar sua identidade, seu estilo e sua história.</p>
+            <a class="service-link mt-6 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[.16em] text-brand-accent hover:text-white" data-service="Ensaio ou retrato" href="#contato">Planejar meu ensaio <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </article>
+          <article class="js-reveal group border border-white/10 bg-brand-dark p-7 transition duration-300 hover:-translate-y-1 hover:border-brand-accent/60 sm:p-9">
+            <span class="mb-6 flex h-12 w-12 items-center justify-center rounded-full border border-brand-accent/40 text-xl text-brand-accent"><i class="fa-solid fa-heart" aria-hidden="true"></i></span>
+            <h3 class="font-display text-3xl text-white">Casais e celebrações</h3>
+            <p class="mt-3 text-sm leading-7 text-stone-400">Conexões, compromissos e momentos especiais contados com sensibilidade.</p>
+            <a class="service-link mt-6 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[.16em] text-brand-accent hover:text-white" data-service="Ensaio de casal ou celebração" href="#contato">Conversar sobre minha data <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </article>
+          <article class="js-reveal group border border-white/10 bg-brand-dark p-7 transition duration-300 hover:-translate-y-1 hover:border-brand-accent/60 sm:p-9">
+            <span class="mb-6 flex h-12 w-12 items-center justify-center rounded-full border border-brand-accent/40 text-xl text-brand-accent"><i class="fa-solid fa-champagne-glasses" aria-hidden="true"></i></span>
+            <h3 class="font-display text-3xl text-white">Eventos especiais</h3>
+            <p class="mt-3 text-sm leading-7 text-stone-400">Registros atentos aos acontecimentos, às pessoas e à atmosfera de cada ocasião.</p>
+            <a class="service-link mt-6 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[.16em] text-brand-accent hover:text-white" data-service="Fotografia de evento especial" href="#contato">Solicitar informações <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </article>
+        </div>
+      </div>
+    </section>
 
-    <!-- Botão Flutuante do WhatsApp -->
-    <a href="https://wa.me/5585991742478?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20meu%20evento." target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-40 bg-emerald-600 hover:bg-emerald-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110" title="Falar no WhatsApp">
-        <i class="fa-brands fa-whatsapp text-2xl"></i>
-    </a>
+    <!-- Portfólio -->
+    <section id="portfolio" class="bg-brand-dark py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="js-reveal mx-auto mb-10 max-w-3xl text-center sm:mb-14">
+          <p class="eyebrow mb-3 text-[10px] font-bold uppercase text-brand-accent sm:text-xs">Seleção de imagens</p>
+          <h2 class="font-display text-4xl text-white sm:text-6xl">Histórias em imagens</h2>
+          <p class="mx-auto mt-4 max-w-xl text-sm font-light leading-7 text-stone-400">Uma seleção de ensaios e celebrações. Selecione uma categoria e abra as imagens para vê-las em detalhe.</p>
+        </div>
 
-    <!-- Scripts da Aplicação -->
-    <script>
-        const contactForm = document.getElementById('contact-form');
-        const contactFormStatus = document.getElementById('contact-form-status');
-        const contactFormSubmitButton = contactForm.querySelector('button[type="submit"]');
+        <div class="mb-9 flex flex-wrap justify-center gap-2" role="group" aria-label="Filtrar portfólio por categoria">
+          <button type="button" class="filter-btn focus-ring rounded-full border border-white/15 px-4 py-2.5 text-[10px] font-bold uppercase tracking-[.14em] text-stone-300 transition hover:border-brand-accent" data-category="todos" aria-pressed="true">Todos</button>
+          <button type="button" class="filter-btn focus-ring rounded-full border border-white/15 px-4 py-2.5 text-[10px] font-bold uppercase tracking-[.14em] text-stone-300 transition hover:border-brand-accent" data-category="familia" aria-pressed="false">Família</button>
+          <button type="button" class="filter-btn focus-ring rounded-full border border-white/15 px-4 py-2.5 text-[10px] font-bold uppercase tracking-[.14em] text-stone-300 transition hover:border-brand-accent" data-category="infantil" aria-pressed="false">Infantil</button>
+          <button type="button" class="filter-btn focus-ring rounded-full border border-white/15 px-4 py-2.5 text-[10px] font-bold uppercase tracking-[.14em] text-stone-300 transition hover:border-brand-accent" data-category="ensaios" aria-pressed="false">Ensaios e retratos</button>
+          <button type="button" class="filter-btn focus-ring rounded-full border border-white/15 px-4 py-2.5 text-[10px] font-bold uppercase tracking-[.14em] text-stone-300 transition hover:border-brand-accent" data-category="celebracoes" aria-pressed="false">Celebrações</button>
+        </div>
 
-        contactForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
-            contactFormSubmitButton.disabled = true;
-            contactFormSubmitButton.textContent = 'Enviando...';
-            contactFormStatus.textContent = 'Enviando sua solicitação. Aguarde um momento.';
-            contactFormStatus.className = 'text-center text-sm text-stone-300';
+        <div id="portfolio-grid" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <button type="button" class="portfolio-item group relative min-h-[320px] overflow-hidden rounded-xl border border-white/10 bg-brand-card text-left sm:min-h-[380px]" data-category="ensaios" data-src="imagens/ensaio-fem-praia.jpg" data-title="Luz de fim de tarde" data-subtitle="Ensaios e retratos">
+            <img src="imagens/ensaio-fem-praia.jpg" alt="Ensaio fotográfico ao ar livre na praia" class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async">
+            <span class="portfolio-overlay absolute inset-0"></span>
+            <span class="absolute bottom-0 left-0 right-0 p-5 sm:p-6"><span class="mb-2 block text-[9px] font-bold uppercase tracking-[.2em] text-brand-accent">Ensaios e retratos</span><span class="font-display text-3xl text-white">Luz de fim de tarde</span><span class="mt-3 block text-xs text-stone-300">Ver fotografia <i class="fa-solid fa-arrow-up-right-from-square ml-1" aria-hidden="true"></i></span></span>
+          </button>
 
-            try {
-                const ajaxUrl = contactForm.action.replace(
-                    'https://formsubmit.co/',
-                    'https://formsubmit.co/ajax/'
-                );
-                const response = await fetch(ajaxUrl, {
-                    method: 'POST',
-                    body: new FormData(contactForm),
-                    headers: { Accept: 'application/json' }
-                });
-                const result = await response.json();
+          <button type="button" class="portfolio-item group relative min-h-[320px] overflow-hidden rounded-xl border border-white/10 bg-brand-card text-left sm:min-h-[380px]" data-category="infantil" data-src="imagens/eventos-abc.jpg" data-title="Um dia para celebrar" data-subtitle="Infantil e formaturas">
+            <img src="imagens/eventos-abc.jpg" alt="Registro de celebração infantil ou formatura" class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async">
+            <span class="portfolio-overlay absolute inset-0"></span>
+            <span class="absolute bottom-0 left-0 right-0 p-5 sm:p-6"><span class="mb-2 block text-[9px] font-bold uppercase tracking-[.2em] text-brand-accent">Infantil</span><span class="font-display text-3xl text-white">Um dia para celebrar</span><span class="mt-3 block text-xs text-stone-300">Ver fotografia <i class="fa-solid fa-arrow-up-right-from-square ml-1" aria-hidden="true"></i></span></span>
+          </button>
 
-                if (!response.ok || (result.success !== true && result.success !== 'true')) {
-                    throw new Error(result.message || 'Não foi possível enviar sua solicitação.');
-                }
+          <button type="button" class="portfolio-item group relative min-h-[320px] overflow-hidden rounded-xl border border-white/10 bg-brand-card text-left sm:min-h-[380px]" data-category="celebracoes" data-src="imagens/logo insta.jpg" data-title="Encontros que ficam" data-subtitle="Celebrações">
+            <img src="imagens/logo insta.jpg" alt="Imagem de celebração do portfólio Em Cena Fotografia" class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async">
+            <span class="portfolio-overlay absolute inset-0"></span>
+            <span class="absolute bottom-0 left-0 right-0 p-5 sm:p-6"><span class="mb-2 block text-[9px] font-bold uppercase tracking-[.2em] text-brand-accent">Celebrações</span><span class="font-display text-3xl text-white">Encontros que ficam</span><span class="mt-3 block text-xs text-stone-300">Ver fotografia <i class="fa-solid fa-arrow-up-right-from-square ml-1" aria-hidden="true"></i></span></span>
+          </button>
 
-                contactForm.reset();
-                contactFormStatus.textContent = 'Solicitação enviada com sucesso! Entraremos em contato em breve.';
-                contactFormStatus.className = 'text-center text-sm text-emerald-400';
-            } catch (error) {
-                contactFormStatus.textContent = error.message || 'Erro ao enviar. Verifique sua conexão e tente novamente.';
-                contactFormStatus.className = 'text-center text-sm text-red-400';
-            } finally {
-                contactFormSubmitButton.disabled = false;
-                contactFormSubmitButton.textContent = 'Enviar Solicitação';
-            }
+          <button type="button" class="portfolio-item group relative min-h-[320px] overflow-hidden rounded-xl border border-white/10 bg-brand-card text-left sm:min-h-[380px]" data-category="ensaios" data-src="imagens/logo insta.jpg" data-title="Essência em retrato" data-subtitle="Retratos individuais">
+            <img src="imagens/logo insta.jpg" alt="Imagem de retrato do portfólio Em Cena Fotografia" class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async">
+            <span class="portfolio-overlay absolute inset-0"></span>
+            <span class="absolute bottom-0 left-0 right-0 p-5 sm:p-6"><span class="mb-2 block text-[9px] font-bold uppercase tracking-[.2em] text-brand-accent">Ensaios e retratos</span><span class="font-display text-3xl text-white">Essência em retrato</span><span class="mt-3 block text-xs text-stone-300">Ver fotografia <i class="fa-solid fa-arrow-up-right-from-square ml-1" aria-hidden="true"></i></span></span>
+          </button>
+
+          <button type="button" class="portfolio-item group relative min-h-[320px] overflow-hidden rounded-xl border border-white/10 bg-brand-card text-left sm:min-h-[380px]" data-category="familia" data-src="imagens/logo insta.jpg" data-title="Laços de família" data-subtitle="Fotografia de família">
+            <img src="imagens/logo insta.jpg" alt="Imagem de família do portfólio Em Cena Fotografia" class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async">
+            <span class="portfolio-overlay absolute inset-0"></span>
+            <span class="absolute bottom-0 left-0 right-0 p-5 sm:p-6"><span class="mb-2 block text-[9px] font-bold uppercase tracking-[.2em] text-brand-accent">Família</span><span class="font-display text-3xl text-white">Laços de família</span><span class="mt-3 block text-xs text-stone-300">Ver fotografia <i class="fa-solid fa-arrow-up-right-from-square ml-1" aria-hidden="true"></i></span></span>
+          </button>
+
+          <button type="button" class="portfolio-item group relative min-h-[320px] overflow-hidden rounded-xl border border-white/10 bg-brand-card text-left sm:min-h-[380px]" data-category="celebracoes" data-src="imagens/eventos-abc.jpg" data-title="Pequenas grandes conquistas" data-subtitle="Festas e eventos">
+            <img src="imagens/eventos-abc.jpg" alt="Registro de festa ou evento especial" class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async">
+            <span class="portfolio-overlay absolute inset-0"></span>
+            <span class="absolute bottom-0 left-0 right-0 p-5 sm:p-6"><span class="mb-2 block text-[9px] font-bold uppercase tracking-[.2em] text-brand-accent">Celebrações</span><span class="font-display text-3xl text-white">Pequenas grandes conquistas</span><span class="mt-3 block text-xs text-stone-300">Ver fotografia <i class="fa-solid fa-arrow-up-right-from-square ml-1" aria-hidden="true"></i></span></span>
+          </button>
+        </div>
+        <p class="mt-5 text-center text-[11px] leading-6 text-stone-500">As categorias e os títulos podem ser ajustados conforme os trabalhos reais disponíveis no portfólio.</p>
+      </div>
+    </section>
+
+    <!-- Depoimentos: textos preservados; nomes fictícios identificados como ilustrativos -->
+    <section id="depoimentos" class="border-y border-white/5 bg-[#1c1917] py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="js-reveal mx-auto mb-12 max-w-2xl text-center sm:mb-16">
+          <p class="eyebrow mb-3 text-[10px] font-bold uppercase text-brand-accent sm:text-xs">Palavras que inspiram</p>
+          <h2 class="font-display text-4xl text-white sm:text-6xl">Experiências que ficam na memória</h2>
+          <p class="mt-4 text-sm font-light leading-7 text-stone-400">Cada história merece ser tratada com atenção, cuidado e respeito.</p>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-3">
+          <article class="js-reveal flex flex-col border border-white/10 bg-brand-dark p-7 sm:p-8">
+            <i class="fa-solid fa-quote-left text-2xl text-brand-accent" aria-hidden="true"></i>
+            <p class="mt-6 flex-1 text-sm font-light italic leading-7 text-stone-300">"O Em Cena capturou momentos que nem percebemos que aconteceram. Quando recebemos nosso álbum, choramos de emoção. A delicadeza das fotos é indescritível!"</p>
+            <div class="mt-7 border-t border-white/10 pt-5">
+              <div class="mb-2 flex gap-1 text-[10px] text-brand-accent" aria-label="Cinco estrelas"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <h3 class="font-display text-2xl text-white">Mariana & Lucas</h3>
+              <p class="mt-1 text-[10px] uppercase tracking-[.14em] text-stone-500">Casamento em Fortaleza</p>
+            </div>
+          </article>
+
+          <article class="js-reveal flex flex-col border border-white/10 bg-brand-dark p-7 sm:p-8">
+            <i class="fa-solid fa-quote-left text-2xl text-brand-accent" aria-hidden="true"></i>
+            <p class="mt-6 flex-1 text-sm font-light italic leading-7 text-stone-300">"A tranquilidade que eles nos passaram no pré-wedding e no dia do casamento fez toda a diferença. Não nos sentimos 'posando', foi tudo fluido e natural."</p>
+            <div class="mt-7 border-t border-white/10 pt-5">
+              <div class="mb-2 flex gap-1 text-[10px] text-brand-accent" aria-label="Cinco estrelas"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <h3 class="font-display text-2xl text-white">Ana & Rafael</h3>
+              <p class="mt-1 text-[10px] uppercase tracking-[.14em] text-stone-500">Casamento no campo</p>
+            </div>
+          </article>
+
+          <article class="js-reveal flex flex-col border border-white/10 bg-brand-dark p-7 sm:p-8">
+            <i class="fa-solid fa-quote-left text-2xl text-brand-accent" aria-hidden="true"></i>
+            <p class="mt-6 flex-1 text-sm font-light italic leading-7 text-stone-300">"Profissionais impecáveis! A qualidade da luz, o enquadramento e a agilidade na entrega do material superaram todas as nossas expectativas."</p>
+            <div class="mt-7 border-t border-white/10 pt-5">
+              <div class="mb-2 flex gap-1 text-[10px] text-brand-accent" aria-label="Cinco estrelas"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <h3 class="font-display text-2xl text-white">Juliana Martins</h3>
+              <p class="mt-1 text-[10px] uppercase tracking-[.14em] text-stone-500">Aniversário</p>
+            </div>
+          </article>
+        </div>
+        <p class="mt-6 text-center text-[10px] leading-5 text-stone-500">Nota: os nomes e depoimentos acima são fictícios/ilustrativos para a versão de demonstração do site; substitua-os por avaliações reais autorizadas antes de usar como prova social comercial.</p>
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="bg-brand-dark py-20 sm:py-28">
+      <div class="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-5 lg:gap-16">
+        <div class="js-reveal lg:col-span-2">
+          <p class="eyebrow mb-3 text-[10px] font-bold uppercase text-brand-accent sm:text-xs">Vamos planejar juntos?</p>
+          <h2 class="font-display text-4xl leading-tight text-white sm:text-6xl">Sua história merece entrar em cena.</h2>
+          <p class="mt-5 text-sm font-light leading-7 text-stone-400">Conte um pouco sobre o que você quer registrar. Vamos conversar sobre a data, o local e a melhor forma de transformar sua ideia em imagens.</p>
+
+          <a href="https://wa.me/5585991742478?text=Ol%C3%A1%21%20Gostaria%20de%20conversar%20sobre%20um%20or%C3%A7amento%20com%20a%20Em%20Cena%20Fotografia."
+             target="_blank" rel="noopener noreferrer"
+             class="focus-ring mt-7 inline-flex items-center gap-3 rounded-full bg-emerald-700 px-6 py-4 text-xs font-bold uppercase tracking-[.12em] text-white transition hover:bg-emerald-600">
+            <i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i> Falar pelo WhatsApp
+          </a>
+
+          <div class="mt-9 space-y-5 border-t border-white/10 pt-7">
+            <div class="flex gap-4">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand-accent/30 text-brand-accent"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span>
+              <div><h3 class="text-sm font-semibold text-white">Onde atendemos</h3><p class="mt-1 text-xs leading-6 text-stone-400">Fortaleza — CE e região. Consulte disponibilidade para outras localidades.</p></div>
+            </div>
+            <div class="flex gap-4">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand-accent/30 text-brand-accent"><i class="fa-solid fa-envelope" aria-hidden="true"></i></span>
+              <div><h3 class="text-sm font-semibold text-white">E-mail</h3><a class="focus-ring mt-1 inline-block break-all text-xs text-stone-400 hover:text-brand-accent" href="mailto:emcena.ft.studio@gmail.com">emcena.ft.studio@gmail.com</a></div>
+            </div>
+            <div class="flex gap-4">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand-accent/30 text-brand-accent"><i class="fa-brands fa-instagram" aria-hidden="true"></i></span>
+              <div><h3 class="text-sm font-semibold text-white">Instagram</h3><a class="focus-ring mt-1 inline-block text-xs text-stone-400 hover:text-brand-accent" href="https://www.instagram.com/emcena.fotografia/" target="_blank" rel="noopener noreferrer">@emcena.fotografia</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="js-reveal border border-white/10 bg-brand-card p-6 sm:p-9 lg:col-span-3">
+          <div class="mb-7">
+            <h3 class="font-display text-3xl text-white sm:text-4xl">Solicite seu orçamento</h3>
+            <p class="mt-2 text-xs leading-6 text-stone-400">Preencha os dados abaixo. Os campos com * são obrigatórios.</p>
+          </div>
+
+          <form id="contact-form" action="https://formsubmit.co/emcena.ft.studio@gmail.com" method="POST" class="space-y-5">
+            <input type="hidden" name="_subject" value="Nova solicitação de orçamento — Em Cena Fotografia">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="true">
+            <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <div class="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label for="nome" class="mb-2 block text-[10px] font-bold uppercase tracking-[.14em] text-stone-300">Nome completo *</label>
+                <input id="nome" name="Nome completo" type="text" autocomplete="name" required maxlength="100" placeholder="Como podemos chamar você?"
+                  class="focus-ring w-full rounded-lg border border-white/10 bg-brand-dark px-4 py-3.5 text-sm text-white placeholder-stone-600 transition focus:border-brand-accent">
+              </div>
+              <div>
+                <label for="telefone" class="mb-2 block text-[10px] font-bold uppercase tracking-[.14em] text-stone-300">WhatsApp *</label>
+                <input id="telefone" name="Telefone / WhatsApp" type="tel" autocomplete="tel" required maxlength="30" placeholder="(85) 99999-9999"
+                  class="focus-ring w-full rounded-lg border border-white/10 bg-brand-dark px-4 py-3.5 text-sm text-white placeholder-stone-600 transition focus:border-brand-accent">
+              </div>
+            </div>
+
+            <div class="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label for="email" class="mb-2 block text-[10px] font-bold uppercase tracking-[.14em] text-stone-300">E-mail *</label>
+                <input id="email" name="email" type="email" autocomplete="email" required maxlength="150" placeholder="voce@exemplo.com"
+                  class="focus-ring w-full rounded-lg border border-white/10 bg-brand-dark px-4 py-3.5 text-sm text-white placeholder-stone-600 transition focus:border-brand-accent">
+              </div>
+              <div>
+                <label for="data" class="mb-2 block text-[10px] font-bold uppercase tracking-[.14em] text-stone-300">Data prevista</label>
+                <input id="data" name="Data prevista" type="date"
+                  class="focus-ring w-full rounded-lg border border-white/10 bg-brand-dark px-4 py-3.5 text-sm text-stone-300 transition focus:border-brand-accent">
+              </div>
+            </div>
+
+            <div class="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label for="servico" class="mb-2 block text-[10px] font-bold uppercase tracking-[.14em] text-stone-300">Qual serviço procura? *</label>
+                <select id="servico" name="Tipo de serviço" required
+                  class="focus-ring w-full rounded-lg border border-white/10 bg-brand-dark px-4 py-3.5 text-sm text-stone-200 transition focus:border-brand-accent">
+                  <option value="" selected disabled>Selecione uma opção</option>
+                  <option>Fotografia de família</option>
+                  <option>Fotografia infantil</option>
+                  <option>Aniversário</option>
+                  <option>Ensaio individual ou retrato</option>
+                  <option>Ensaio de casal</option>
+                  <option>Casamento ou pré-wedding</option>
+                  <option>Batizado ou celebração</option>
+                  <option>Outro evento</option>
+                </select>
+              </div>
+              <div>
+                <label for="local" class="mb-2 block text-[10px] font-bold uppercase tracking-[.14em] text-stone-300">Local do ensaio/evento</label>
+                <input id="local" name="Local" type="text" maxlength="150" placeholder="Bairro, espaço ou cidade"
+                  class="focus-ring w-full rounded-lg border border-white/10 bg-brand-dark px-4 py-3.5 text-sm text-white placeholder-stone-600 transition focus:border-brand-accent">
+              </div>
+            </div>
+
+            <div>
+              <label for="mensagem" class="mb-2 block text-[10px] font-bold uppercase tracking-[.14em] text-stone-300">Conte um pouco mais</label>
+              <textarea id="mensagem" name="Mensagem" rows="4" maxlength="1500" placeholder="Conte como você imagina esse registro ou deixe alguma dúvida."
+                class="focus-ring w-full resize-y rounded-lg border border-white/10 bg-brand-dark px-4 py-3.5 text-sm text-white placeholder-stone-600 transition focus:border-brand-accent"></textarea>
+            </div>
+
+            <button id="submit-btn" type="submit" class="focus-ring flex w-full items-center justify-center gap-3 rounded-lg bg-brand-accent px-6 py-4 text-[10px] font-bold uppercase tracking-[.18em] text-brand-dark transition hover:bg-brand-accentHover disabled:cursor-wait disabled:opacity-60">
+              Enviar solicitação <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </button>
+            <p id="contact-form-status" class="hidden text-center text-sm leading-6" role="status" aria-live="polite"></p>
+            <p class="text-center text-[10px] leading-5 text-stone-500">Ao enviar, você autoriza o uso dos dados informados para responder ao seu pedido de orçamento.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="border-t border-white/10 bg-[#121110] py-9">
+    <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-5 text-center sm:px-8 md:flex-row md:text-left">
+      <a href="#inicio" class="focus-ring flex flex-col" aria-label="Em Cena Fotografia — voltar ao início">
+        <span class="font-display text-2xl tracking-[.16em] text-white">EM CENA</span>
+        <span class="-mt-1 text-[9px] uppercase tracking-[.34em] text-brand-accent">Fotografia</span>
+      </a>
+      <p class="text-[10px] leading-6 text-stone-500">© <span id="current-year">2026</span> Em Cena Fotografia. Todos os direitos reservados.</p>
+      <div class="flex items-center gap-5 text-lg text-stone-400">
+        <a class="focus-ring transition hover:text-brand-accent" href="https://www.instagram.com/emcena.fotografia/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a class="focus-ring transition hover:text-brand-accent" href="https://wa.me/5585991742478?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp flutuante -->
+  <a href="https://wa.me/5585991742478?text=Ol%C3%A1%21%20Conheci%20o%20site%20da%20Em%20Cena%20Fotografia%20e%20gostaria%20de%20um%20or%C3%A7amento."
+     target="_blank" rel="noopener noreferrer"
+     class="focus-ring fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-700 text-2xl text-white shadow-2xl transition hover:scale-105 hover:bg-emerald-600"
+     aria-label="Solicitar orçamento pelo WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <!-- Lightbox acessível -->
+  <div id="image-modal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-black/95 p-4 opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-subtitle">
+    <button id="modal-close" type="button" class="focus-ring absolute right-4 top-4 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-2xl text-white hover:bg-white/20 sm:right-7 sm:top-7" aria-label="Fechar imagem">
+      <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+    </button>
+    <div class="w-full max-w-6xl text-center">
+      <img id="modal-img" src="" alt="" class="mx-auto max-h-[78vh] max-w-full rounded-md object-contain shadow-2xl">
+      <h2 id="modal-title" class="mt-4 font-display text-3xl text-white"></h2>
+      <p id="modal-subtitle" class="mt-1 text-[10px] uppercase tracking-[.2em] text-brand-accent"></p>
+    </div>
+  </div>
+
+  <script>
+    // Menu móvel: fecha após navegação e mantém aria-expanded sincronizado.
+    const menuButton = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    function setMobileMenu(open) {
+      mobileMenu.classList.toggle('hidden', !open);
+      menuButton.setAttribute('aria-expanded', String(open));
+      menuButton.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+      menuButton.innerHTML = open
+        ? '<i class="fa-solid fa-xmark" aria-hidden="true"></i>'
+        : '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+    }
+
+    menuButton.addEventListener('click', () => {
+      setMobileMenu(menuButton.getAttribute('aria-expanded') !== 'true');
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => setMobileMenu(false));
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        setMobileMenu(false);
+        closeModal();
+      }
+    });
+
+    // Carrossel de capa: controles funcionais e pausa com preferência por movimento reduzido.
+    const slides = Array.from(document.querySelectorAll('.hero-slide'));
+    const indicators = Array.from(document.querySelectorAll('.slide-indicator'));
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let currentSlide = 0;
+    let slideTimer = null;
+
+    function setSlide(index) {
+      if (!slides.length) return;
+      currentSlide = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => slide.classList.toggle('is-active', i === currentSlide));
+      indicators.forEach((button, i) => {
+        const active = i === currentSlide;
+        button.setAttribute('aria-pressed', String(active));
+        button.classList.toggle('bg-brand-accent', active);
+        button.classList.toggle('w-8', active);
+        button.classList.toggle('bg-white/50', !active);
+        button.classList.toggle('w-2.5', !active);
+      });
+    }
+    indicators.forEach(button => {
+      button.addEventListener('click', () => {
+        setSlide(Number(button.dataset.slide));
+        restartSlider();
+      });
+    });
+    function restartSlider() {
+      if (slideTimer) window.clearInterval(slideTimer);
+      if (!reduceMotion && slides.length > 1) {
+        slideTimer = window.setInterval(() => setSlide(currentSlide + 1), 6000);
+      }
+    }
+    restartSlider();
+
+    // Filtros: usam data-category em vez de nomes de classes inconsistentes.
+    const filterButtons = Array.from(document.querySelectorAll('.filter-btn'));
+    const portfolioItems = Array.from(document.querySelectorAll('.portfolio-item'));
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const category = button.dataset.category;
+        filterButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+        portfolioItems.forEach(item => {
+          item.hidden = category !== 'todos' && item.dataset.category !== category;
         });
+      });
+    });
 
-        // Hero Image Slider logic
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.hero-slide');
-        const indicators = document.querySelectorAll('.slide-indicator');
+    // Lightbox: abre ao selecionar uma foto, fecha no botão, no fundo ou com Escape.
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalTitle = document.getElementById('modal-title');
+    const modalSubtitle = document.getElementById('modal-subtitle');
+    const modalClose = document.getElementById('modal-close');
+    let lastFocusedElement = null;
 
-        function setSlide(index) {
-            slides[currentSlide].classList.remove('opacity-100');
-            slides[currentSlide].classList.add('opacity-0');
-            indicators[currentSlide].classList.remove('bg-white/80');
-            indicators[currentSlide].classList.add('bg-white/30');
+    function openModal(src, title, subtitle, alt) {
+      lastFocusedElement = document.activeElement;
+      modalImg.src = src;
+      modalImg.alt = alt || title;
+      modalTitle.textContent = title || '';
+      modalSubtitle.textContent = subtitle || '';
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(() => modal.classList.remove('opacity-0'));
+      modalClose.focus();
+    }
+    function closeModal() {
+      if (modal.classList.contains('hidden')) return;
+      modal.classList.add('opacity-0');
+      window.setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        modalImg.src = '';
+        document.body.style.overflow = '';
+        if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') lastFocusedElement.focus();
+      }, 220);
+    }
+    portfolioItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const image = item.querySelector('img');
+        openModal(item.dataset.src, item.dataset.title, item.dataset.subtitle, image ? image.alt : item.dataset.title);
+      });
+    });
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', event => {
+      if (event.target === modal) closeModal();
+    });
 
-            currentSlide = index;
+    // Serviços: preenche a opção correspondente no formulário.
+    document.querySelectorAll('.service-link').forEach(link => {
+      link.addEventListener('click', () => {
+        const select = document.getElementById('servico');
+        const desired = link.dataset.service;
+        const option = Array.from(select.options).find(item => item.text.toLowerCase() === desired.toLowerCase());
+        if (option) select.value = option.value || option.text;
+        else if (desired.includes('família')) select.value = 'Fotografia de família';
+        else if (desired.includes('infantil')) select.value = 'Fotografia infantil';
+        else if (desired.includes('aniversário')) select.value = 'Aniversário';
+        else if (desired.includes('retrato')) select.value = 'Ensaio individual ou retrato';
+        else if (desired.includes('casal')) select.value = 'Ensaio de casal';
+        else if (desired.includes('celebração')) select.value = 'Batizado ou celebração';
+        else select.value = 'Outro evento';
+      });
+    });
 
-            slides[currentSlide].classList.remove('opacity-0');
-            slides[currentSlide].classList.add('opacity-100');
-            indicators[currentSlide].classList.remove('bg-white/30');
-            indicators[currentSlide].classList.add('bg-white/80');
-        }
+    // FormSubmit AJAX. O primeiro envio pode exigir confirmação do endereço de destino.
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('contact-form-status');
+    const submitButton = document.getElementById('submit-btn');
 
-        // Auto slide interval
-        setInterval(() => {
-            let next = (currentSlide + 1) % slides.length;
-            setSlide(next);
-        }, 5000);
+    contactForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      if (!contactForm.reportValidity()) return;
+      submitButton.disabled = true;
+      submitButton.innerHTML = 'Enviando... <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>';
+      formStatus.className = 'block text-center text-sm leading-6 text-stone-300';
+      formStatus.textContent = 'Enviando sua solicitação. Aguarde um instante.';
 
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+      try {
+        const ajaxUrl = contactForm.action.replace('https://formsubmit.co/', 'https://formsubmit.co/ajax/');
+        const response = await fetch(ajaxUrl, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { 'Accept': 'application/json' }
         });
+        let result = {};
+        try { result = await response.json(); } catch (_) {}
+        if (!response.ok || !(result.success === true || result.success === 'true')) {
+          throw new Error(result.message || 'Não foi possível confirmar o envio. Tente novamente ou fale conosco pelo WhatsApp.');
+        }
+        contactForm.reset();
+        formStatus.className = 'block text-center text-sm leading-6 text-emerald-400';
+        formStatus.textContent = 'Solicitação enviada! Obrigado pelo contato. Retornaremos assim que possível.';
+      } catch (error) {
+        formStatus.className = 'block text-center text-sm leading-6 text-red-300';
+        formStatus.textContent = error.message || 'Não foi possível enviar. Verifique sua conexão ou fale conosco pelo WhatsApp.';
+      } finally {
+        submitButton.disabled = false;
+        submitButton.innerHTML = 'Enviar solicitação <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>';
+      }
+    });
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
+    // Ano automático no rodapé.
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Entrada suave de elementos sem esconder conteúdo se JavaScript falhar.
+    const revealItems = document.querySelectorAll('.js-reveal');
+    if ('IntersectionObserver' in window && !reduceMotion) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
         });
-
-        // Portfolio Category Filter
-        function filterCategory(category) {
-            const items = document.querySelectorAll('.portfolio-item');
-            const filterBtns = document.querySelectorAll('.filter-btn');
-
-            filterBtns.forEach(btn => {
-                btn.classList.remove('bg-brand-accent', 'text-brand-dark', 'border-brand-accent');
-                btn.classList.add('border-stone-800', 'text-stone-300');
-            });
-
-            event.target.classList.add('bg-brand-accent', 'text-brand-dark', 'border-brand-accent');
-            event.target.classList.remove('border-stone-800', 'text-stone-300');
-
-            items.forEach(item => {
-                if (category === 'todos' || item.classList.contains(category)) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        }
-
-        // Modal Lightbox
-        const modal = document.getElementById('image-modal');
-        const modalImg = document.getElementById('modal-img');
-        const modalTitle = document.getElementById('modal-title');
-        const modalSubtitle = document.getElementById('modal-subtitle');
-
-        function openModal(src, title, subtitle) {
-            modalImg.src = src;
-            modalTitle.innerText = title;
-            modalSubtitle.innerText = subtitle;
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-            }, 10);
-        }
-
-        function closeModal() {
-            modal.classList.add('opacity-0');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 300);
-        }
-
-    </script>
+      }, { threshold: 0.12 });
+      revealItems.forEach(item => observer.observe(item));
+    } else {
+      revealItems.forEach(item => item.classList.add('is-visible'));
+    }
+  </script>
 </body>
 </html>
